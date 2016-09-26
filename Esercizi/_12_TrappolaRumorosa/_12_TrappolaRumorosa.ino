@@ -1,19 +1,18 @@
 const byte PIN_FOTORESISTENZA = A0;
-const byte PIN_LED            = 13;
+const byte PIN_MOTORE         = 13;
 const byte SOGLIA             = 500;
 
 void setup() {
   pinMode(PIN_FOTORESISTENZA, INPUT);
-  pinMode(PIN_LED,            OUTPUT);
+  pinMode(PIN_MOTORE,         OUTPUT);
 }
 
 void loop() {
   int valoreSensore = analogRead(PIN_FOTORESISTENZA);
 
   if (valoreSensore < SOGLIA)
-    // lo accendo se è buio
-    digitalWrite(PIN_LED, HIGH);
+    // Luminosità minore: c'è un'ombra!
+    digitalWrite(PIN_MOTORE, HIGH);
   else
-    // lo spengo se c'è già luce
-    digitalWrite(PIN_LED, LOW);
+    digitalWrite(PIN_MOTORE, LOW);
 }
