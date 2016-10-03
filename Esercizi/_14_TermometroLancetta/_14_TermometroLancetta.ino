@@ -1,7 +1,11 @@
 #include <Servo.h>
 
-const byte PIN_LM35 = A0;
-const byte FONDOSCALA  = 40;
+const byte  PIN_TERMORESISTENZA = A0;
+const float RESISTENZAFISSA    = 10.0; 
+const float Bcoeff             = 3435;
+const float RESISTENZA25       = 10.0;
+
+const byte FONDOSCALA          = 40;
 Servo myservo;
 
 void setup() {
@@ -9,12 +13,13 @@ void setup() {
 }
 
 void loop() {
-  // Lettura della temperatura dal sensore LM35
-  // 10mV = 1°C
-  float tensione;
-  tensione = analogRead(PIN_LM35) * 5.0 / 1023.0;
+  int   lettura     = analogRead(PIN_TERMORESISTENZA);
+  float resistenzaSensore = RESISTENZAFISSA / ( 1024.0 / lettura - 1 );
   float temperatura;
-  temperatura = tensione / 0.01;
+  
+  temperatura = log(resistenzaSensore / RESISTENZA25);
+  temperatura = temperatura / Bcoeff + 1/298.15;
+  temperatura = 1/temperatura + 273.15;
 
   // Se la temperatura è troppo alta la lancetta si blocca
   // sul fondo basso o alto

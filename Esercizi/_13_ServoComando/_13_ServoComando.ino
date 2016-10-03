@@ -5,6 +5,7 @@ Servo myservo;
 
 void setup() {
   myservo.attach(9);
+  pinMode(PIN_SENSORE, INPUT);
 }
 
 void loop() {
