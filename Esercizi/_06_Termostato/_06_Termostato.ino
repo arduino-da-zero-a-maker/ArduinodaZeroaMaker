@@ -1,6 +1,6 @@
 const byte PIN_TERMORESISTENZA = A0;
 const byte PIN_LED             = 13;
-const byte SOGLIA              = 500;
+const int  SOGLIA              = 500;
 
 void setup() {
   pinMode(PIN_TERMORESISTENZA, INPUT);
