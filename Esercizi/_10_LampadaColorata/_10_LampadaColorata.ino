@@ -30,6 +30,7 @@ void loop() {
     coloreSelezionato = 2;
 
   int lettura = analogRead(PIN_POTENZIOMETRO);
+  // Attenzione alla divisione!
   byte colore = lettura / 1023.0 * 255;
   
   if (coloreSelezionato == 0)

@@ -29,7 +29,8 @@ void loop() {
     temperatura = 0;
 
   // Converte la temperatura in un angolo per il motore
-  byte posizione = temperatura * 180 / FONDOSCALA;
+  // Attenzione alla divisione!
+  byte posizione = temperatura * 180.0 / FONDOSCALA;
 
   myservo.write(posizione);
 
